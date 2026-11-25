@@ -286,3 +286,12 @@ figure {
     align-items: flex-start;
   }
 }
+
+/* Loading screen: "JORDY ZERO PORTFOLIO" is longer than "JORDY ZERO SHOP" (20 letters instead of 15). */
+.loader-name {
+  font-size: clamp(24px, 6.2vw, 96px);
+}
+
+.loader-word-typed {
+  animation-duration: 0.7s;
+}
