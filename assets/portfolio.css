@@ -207,18 +207,29 @@
   gap: 18px;
 }
 
+/* Photo galleries: justified rows of equal height (like Adobe Portfolio), photos never cropped.
+   Each photo grows in proportion to its width/height ratio; the filler keeps the last row from stretching. */
 .pf-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 12px;
+  --pf-row: clamp(180px, 24vw, 340px);
+}
+
+.pf-gallery::after {
+  content: "";
+  flex-grow: 999;
 }
 
 .pf-gallery figure {
-  flex: var(--pf-grow, 1) 1 220px;
+  flex: var(--pf-ar) 1 calc(var(--pf-ar) * var(--pf-row));
+  aspect-ratio: var(--pf-ar);
+  max-height: calc(var(--pf-row) * 1.6);
   margin: 0;
 }
 
 .pf-gallery img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -315,4 +326,100 @@ figure {
 
 .loader-word-typed {
   animation-duration: 0.7s;
+}
+
+/* Photo viewer */
+.pf-modules img {
+  cursor: zoom-in;
+}
+
+.pf-viewer {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.pf-viewer::backdrop {
+  background: transparent;
+}
+
+.pf-viewer[open] {
+  display: grid;
+  place-items: center;
+}
+
+.pf-viewer-image {
+  width: auto;
+  max-width: calc(100vw - 160px);
+  max-height: calc(100dvh - 120px);
+  object-fit: contain;
+  cursor: default;
+  user-select: none;
+}
+
+.pf-viewer .control {
+  position: absolute;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.pf-viewer .control svg {
+  font-size: 22px;
+}
+
+.pf-viewer-close {
+  top: 20px;
+  right: 20px;
+}
+
+.pf-viewer-previous,
+.pf-viewer-next {
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 52px;
+  min-height: 52px;
+}
+
+.pf-viewer-previous {
+  left: 20px;
+}
+
+.pf-viewer-next {
+  right: 20px;
+}
+
+.pf-viewer-count {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .pf-viewer-image {
+    max-width: 100vw;
+    max-height: calc(100dvh - 150px);
+  }
+
+  .pf-viewer-previous,
+  .pf-viewer-next {
+    top: auto;
+    bottom: 12px;
+    transform: none;
+  }
+
+  .pf-viewer-previous {
+    left: 12px;
+  }
+
+  .pf-viewer-next {
+    right: 12px;
+  }
 }

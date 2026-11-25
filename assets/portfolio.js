@@ -149,3 +149,63 @@ function runLoader() {
   }
 }
 runLoader();
+
+// Photo viewer on project pages: click a picture to open it full screen, then arrows (buttons, keyboard or swipe)
+// go through every picture of the project. Escape, the cross or a click beside the picture closes it.
+const pictures = [...document.querySelectorAll(".pf-modules img")];
+if (pictures.length) {
+  const labels = {
+    fr: { close: "Fermer", previous: "Photo précédente", next: "Photo suivante", open: "Agrandir la photo" },
+    nl: { close: "Sluiten", previous: "Vorige foto", next: "Volgende foto", open: "Foto vergroten" },
+    en: { close: "Close", previous: "Previous picture", next: "Next picture", open: "Enlarge picture" }
+  }[root.lang] || {};
+  const icon = path => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${path}" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`;
+  const viewer = document.createElement("dialog");
+  viewer.className = "pf-viewer";
+  viewer.innerHTML = `
+    <img class="pf-viewer-image" alt="">
+    <button class="control pf-viewer-close" type="button" aria-label="${labels.close}">${icon("m6 6 12 12M6 18 18 6")}</button>
+    <button class="control pf-viewer-previous" type="button" aria-label="${labels.previous}">${icon("M15 5 8 12l7 7")}</button>
+    <button class="control pf-viewer-next" type="button" aria-label="${labels.next}">${icon("m9 5 7 7-7 7")}</button>
+    <span class="pf-viewer-count mono" aria-live="polite"></span>`;
+  document.body.append(viewer);
+  const image = viewer.querySelector(".pf-viewer-image");
+  const count = viewer.querySelector(".pf-viewer-count");
+  let current = 0;
+  const show = index => {
+    current = (index + pictures.length) % pictures.length;
+    image.src = pictures[current].currentSrc || pictures[current].src;
+    image.alt = pictures[current].alt;
+    count.textContent = `${String(current + 1).padStart(2, "0")} / ${String(pictures.length).padStart(2, "0")}`;
+    // Preload the neighbours so the arrows feel instant.
+    for (const offset of [1, -1]) new Image().src = pictures[(current + offset + pictures.length) % pictures.length].src;
+  };
+  const single = pictures.length < 2;
+  viewer.querySelector(".pf-viewer-previous").hidden = single;
+  viewer.querySelector(".pf-viewer-next").hidden = single;
+  pictures.forEach((picture, index) => {
+    picture.tabIndex = 0;
+    picture.setAttribute("role", "button");
+    picture.setAttribute("aria-label", `${labels.open} — ${picture.alt}`);
+    const open = () => { show(index); viewer.showModal(); };
+    picture.addEventListener("click", open);
+    picture.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
+  });
+  viewer.querySelector(".pf-viewer-close").addEventListener("click", () => viewer.close());
+  viewer.querySelector(".pf-viewer-previous").addEventListener("click", () => show(current - 1));
+  viewer.querySelector(".pf-viewer-next").addEventListener("click", () => show(current + 1));
+  viewer.addEventListener("click", event => { if (event.target === viewer) viewer.close(); });
+  viewer.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") show(current - 1);
+    if (event.key === "ArrowRight") show(current + 1);
+  });
+  let touchX = null;
+  viewer.addEventListener("touchstart", event => { touchX = event.touches[0].clientX; }, { passive: true });
+  viewer.addEventListener("touchend", event => {
+    if (touchX === null) return;
+    const distance = event.changedTouches[0].clientX - touchX;
+    if (Math.abs(distance) > 40) show(current + (distance < 0 ? 1 : -1));
+    touchX = null;
+  });
+  viewer.addEventListener("contextmenu", event => event.preventDefault());
+}
