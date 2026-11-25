@@ -64,13 +64,22 @@
   overflow: hidden;
 }
 
+/* Same proportions as the About block of the JORDY ZERO store (.studio: 0.9fr / 1.1fr, at least 420 px high).
+   The photo fills its column without making the block taller than the text. */
 .pf-about {
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: stretch;
 }
 
 .pf-portrait {
+  position: relative;
   min-height: 420px;
   background: #111;
+}
+
+.pf-portrait img {
+  position: absolute;
+  inset: 0;
+  object-position: center 30%;
 }
 
 .pf-portrait img {
