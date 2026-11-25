@@ -553,3 +553,22 @@ figure {
 .pf-hero .pf-hero-actions {
   padding-block: 40px 10px;
 }
+
+/* The intro film is shown as it is, without the dark veil of the store header. */
+.pf-hero::before {
+  display: none;
+}
+
+/* The two buttons sit just above the photo, aligned with the About block. */
+.pf-about-actions {
+  max-width: 1160px;
+  margin: 0 auto 24px;
+  padding-block: 0;
+}
+
+/* Readable on light and dark frames of the film. */
+.pf-hero .eyebrow span {
+  padding: 3px 7px;
+  background: #080808;
+  color: #fafafa;
+}
