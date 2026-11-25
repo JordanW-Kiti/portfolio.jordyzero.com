@@ -2396,3 +2396,22 @@ html:not([lang="en"]) .desc-en {
     font-size: 14px;
   }
 }
+
+/* Phones: lighter buttons in the home header (same as the portfolio). */
+@media (max-width: 720px) {
+  .hero-copy .actions {
+    gap: 14px;
+  }
+
+  .hero-copy .actions .button {
+    gap: 16px;
+    padding: 11px 15px;
+    font-size: 14px;
+  }
+
+  .hero-copy .actions .text-link {
+    min-height: 0;
+    padding-block: 6px;
+    font-size: 13px;
+  }
+}
