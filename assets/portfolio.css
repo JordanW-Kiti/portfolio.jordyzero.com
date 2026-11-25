@@ -503,3 +503,27 @@ figure {
 .pf-seamless .pf-file-video {
   width: 100%;
 }
+
+/* Phones: lighter buttons in the home header. */
+@media (max-width: 720px) {
+  .pf-hero-actions {
+    gap: 14px;
+  }
+
+  .pf-hero-actions .button {
+    gap: 16px;
+    padding: 11px 15px;
+    font-size: 14px;
+  }
+
+  .pf-hero-actions .text-link {
+    min-height: 0;
+    padding-block: 6px;
+    font-size: 13px;
+  }
+
+  .contact .contact-intro {
+    margin-bottom: 0;
+    font-size: 17px;
+  }
+}
