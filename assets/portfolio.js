@@ -186,7 +186,7 @@ if (pictures.length) {
   pictures.forEach((picture, index) => {
     picture.tabIndex = 0;
     picture.setAttribute("role", "button");
-    picture.setAttribute("aria-label", `${labels.open} — ${picture.alt}`);
+    picture.setAttribute("aria-label", `${labels.open}: ${picture.alt}`);
     const open = () => { show(index); viewer.showModal(); };
     picture.addEventListener("click", open);
     picture.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });

@@ -210,6 +210,11 @@ h3 {
 }
 
 /* "SHOP" next to the name ("PORTFOLIO" on portfolio.jordyzero.com): same type, inverted box. */
+.nav a svg {
+  margin-left: 4px;
+  font-size: 0.85em;
+}
+
 .logo-tag {
   margin-left: 6px;
   padding: 2px 6px 1px;
@@ -1470,6 +1475,52 @@ details p {
     font-size: 24px;
   }
 
+  .logo-tag {
+    margin-left: 2px;
+    padding: 1px 4px;
+    font-size: 0.66em;
+  }
+
+  .controls {
+    gap: 4px;
+  }
+}
+
+/* Narrow phones: logo, SHOP and the three buttons stay on one line. */
+@media (max-width: 430px) {
+  .logo {
+    font-size: 16px;
+  }
+
+  .logo svg {
+    font-size: 21px;
+  }
+
+  .controls .control {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --gutter: 12px;
+  }
+
+  .header {
+    gap: 4px;
+  }
+
+  .controls {
+    gap: 2px;
+  }
+
+  .controls .control {
+    min-width: 38px;
+    min-height: 38px;
+  }
+
   .menu-toggle {
     display: flex;
   }
@@ -1533,6 +1584,7 @@ details p {
   .menu-open .nav > a:nth-child(5) { transition-delay: 170ms; }
   .menu-open .nav > a:nth-child(6) { transition-delay: 195ms; }
   .menu-open .nav > a:nth-child(7) { transition-delay: 220ms; }
+  .menu-open .nav > a:nth-child(8) { transition-delay: 245ms; }
 
   .nav {
     order: 3;
