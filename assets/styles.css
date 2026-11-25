@@ -1484,42 +1484,6 @@ details p {
   .controls {
     gap: 4px;
   }
-}
-
-/* Narrow phones: logo, SHOP and the three buttons stay on one line. */
-@media (max-width: 430px) {
-  .logo {
-    font-size: 16px;
-  }
-
-  .logo svg {
-    font-size: 21px;
-  }
-
-  .controls .control {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 6px;
-  }
-}
-
-@media (max-width: 380px) {
-  :root {
-    --gutter: 12px;
-  }
-
-  .header {
-    gap: 4px;
-  }
-
-  .controls {
-    gap: 2px;
-  }
-
-  .controls .control {
-    min-width: 38px;
-    min-height: 38px;
-  }
 
   .menu-toggle {
     display: flex;
@@ -2367,5 +2331,41 @@ html:not([lang="en"]) .desc-en {
   .newsletter form,
   .email-row {
     min-width: 0;
+  }
+}
+
+/* Narrow phones: logo, SHOP and the three buttons stay on one line. */
+@media (max-width: 430px) {
+  .logo {
+    font-size: 16px;
+  }
+
+  .logo svg {
+    font-size: 21px;
+  }
+
+  .controls .control {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --gutter: 12px;
+  }
+
+  .header {
+    gap: 4px;
+  }
+
+  .controls {
+    gap: 2px;
+  }
+
+  .controls .control {
+    min-width: 38px;
+    min-height: 38px;
   }
 }
