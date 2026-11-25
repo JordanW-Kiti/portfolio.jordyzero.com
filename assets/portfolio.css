@@ -527,3 +527,29 @@ figure {
     font-size: 17px;
   }
 }
+
+/* Hidden on screen, still read by search engines and screen readers. */
+.pf-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pf-hero .pf-hero-actions {
+  padding-block: 70px 20px;
+}
+
+/* Without the big title, the header keeps some height so the intro film shows. */
+.pf-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(260px, 52vh, 560px);
+}
+
+.pf-hero .pf-hero-actions {
+  padding-block: 40px 10px;
+}
