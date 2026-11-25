@@ -67,12 +67,14 @@
 /* Same proportions as the About block of the JORDY ZERO store (.studio: 0.9fr / 1.1fr, at least 420 px high).
    The photo fills its column without making the block taller than the text. */
 .pf-about {
-  align-items: stretch;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
 }
 
 .pf-portrait {
   position: relative;
-  min-height: 420px;
+  height: clamp(420px, 32vw, 600px);
+  aspect-ratio: 4 / 5;
   background: #111;
 }
 
@@ -254,17 +256,22 @@ figure {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .pf-portrait {
+    height: 380px;
+  }
+}
+
+@media (max-width: 720px) {
   .pf-about {
     grid-template-columns: 1fr;
   }
 
   .pf-portrait {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
-}
 
-@media (max-width: 720px) {
   .pf-languages {
     display: none;
   }
