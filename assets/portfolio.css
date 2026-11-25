@@ -489,3 +489,17 @@ figure {
     animation: none;
   }
 }
+
+/* Videos hosted on the site: their real shape, never taller than the screen. */
+.pf-file-video {
+  display: block;
+  width: min(100%, calc(85vh * var(--pf-ar)));
+  height: auto;
+  aspect-ratio: var(--pf-ar);
+  margin: 0 auto;
+  background: #000;
+}
+
+.pf-seamless .pf-file-video {
+  width: 100%;
+}

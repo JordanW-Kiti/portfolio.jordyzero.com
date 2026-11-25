@@ -209,3 +209,20 @@ if (pictures.length) {
   });
   viewer.addEventListener("contextmenu", event => event.preventDefault());
 }
+
+// Site videos: play (muted) while at least 40% visible, pause otherwise. The visitor can unmute in the player.
+const siteVideos = document.querySelectorAll("video[data-autoplay]");
+if (siteVideos.length && "IntersectionObserver" in window) {
+  const watcher = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      const video = entry.target;
+      if (entry.isIntersecting && !reducedMotion.matches) {
+        if (video.preload === "none") video.preload = "auto";
+        video.play().catch(() => {});
+      } else if (!entry.isIntersecting) {
+        video.pause();
+      }
+    }
+  }, { threshold: 0.4 });
+  siteVideos.forEach(video => watcher.observe(video));
+}
