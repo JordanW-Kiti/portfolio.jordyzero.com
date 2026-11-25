@@ -428,6 +428,9 @@ figure {
 /* Projects shown as one continuous board (Portfolio 2026): no gaps, every block the same width. */
 .pf-seamless {
   gap: 0;
+  /* One centred board, like the Behance version. */
+  max-width: calc(1200px + 2 * var(--gutter));
+  margin-inline: auto;
 }
 
 .pf-seamless .pf-media,
