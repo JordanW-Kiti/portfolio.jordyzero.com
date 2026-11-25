@@ -2,11 +2,13 @@
 
 .pf-logo-tag {
   margin-left: 6px;
-  padding: 2px 6px;
+  padding: 2px 6px 1px;
   background: var(--ink);
   color: var(--bg);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  /* Same type as "JORDY ZERO" next to it. */
+  font: 900 0.72em/1.1 Arial, Helvetica, sans-serif;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 /* Languages: in the header controls on wide screens, inside the menu on phones. */
