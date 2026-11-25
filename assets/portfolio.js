@@ -73,23 +73,12 @@ function runLoader() {
   const started = performance.now();
   const elapsed = () => clock ? clock.currentTime ?? 0 : performance.now() - started;
 
-  // 1 The logo is traced, then filled.
+  // 1 The logo appears, filled (no outline): it fades in while growing slightly.
   const logo = loader.querySelector(".loader-logo");
-  const use = logo.querySelector("use");
-  const symbol = use && document.querySelector(use.getAttribute("href"));
-  if (symbol) {
-    logo.setAttribute("viewBox", symbol.getAttribute("viewBox"));
-    logo.innerHTML = symbol.innerHTML;
-  }
-  for (const shape of logo.querySelectorAll("path, polygon")) {
-    const length = shape.getTotalLength();
-    shape.style.strokeDasharray = String(length);
-    shape.animate([
-      { strokeDashoffset: length, fillOpacity: 0 },
-      { strokeDashoffset: 0, fillOpacity: 0, offset: 0.72 },
-      { strokeDashoffset: 0, fillOpacity: 1 },
-    ], { duration: 1100, delay: 150, easing: "ease-in-out", fill: "both" });
-  }
+  logo.animate([
+    { opacity: 0, scale: 0.86 },
+    { opacity: 1, scale: 1 },
+  ], { duration: 900, delay: 150, easing: "cubic-bezier(0.2, 0, 0.2, 1)", fill: "both" });
   if (short) loaderAnimations().forEach(animation => { animation.currentTime = (animation.currentTime || 0) + LOADER_SHORT_SKIP; });
 
   // 2 The counter follows the time, then waits at 99 for the intro film to be ready.

@@ -572,3 +572,9 @@ figure {
   background: #080808;
   color: #fafafa;
 }
+
+/* Loading screen logo: plain filled logo, no traced outline. */
+.loader-logo path,
+.loader-logo polygon {
+  stroke: none;
+}
