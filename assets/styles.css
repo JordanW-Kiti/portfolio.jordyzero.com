@@ -2355,3 +2355,17 @@ html:not([lang="en"]) .desc-en {
     display: none;
   }
 }
+
+/* Phones: the newsletter stacks in one column and its form never gets wider than the screen
+   (a wider form made phones zoom out and show the computer layout). */
+@media (max-width: 720px) {
+  .newsletter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .newsletter > *,
+  .newsletter form,
+  .email-row {
+    min-width: 0;
+  }
+}
