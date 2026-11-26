@@ -578,3 +578,25 @@ figure {
 .loader-logo polygon {
   stroke: none;
 }
+
+/* Category next to the creation name (not on the picture), in the site's bold label style. */
+.pf-card-meta {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pf-card-category {
+  flex-shrink: 0;
+  padding: 3px 7px;
+  background: var(--ink);
+  color: var(--bg);
+  font: 800 11px/1.35 Arial, Helvetica, sans-serif;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Viewer buttons: on hover the background turns light, so the icon turns dark (it vanished before). */
+.pf-viewer .control:hover,
+.pf-viewer .control:focus-visible {
+  color: var(--bg);
+}
