@@ -600,3 +600,34 @@ figure {
 .pf-viewer .control:focus-visible {
   color: var(--bg);
 }
+
+/* Illustration captions: NAME in a label, title, then the date in a thin frame (as on the Portfolio 2026 board). */
+.pf-caption {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.pf-caption > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+
+.pf-caption strong {
+  padding: 2px 7px;
+  background: var(--ink);
+  color: var(--bg);
+  font: 900 15px/1.3 Arial, Helvetica, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.pf-caption time {
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: 12px/1.4 "Courier New", monospace;
+}
