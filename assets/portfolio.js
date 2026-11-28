@@ -38,10 +38,19 @@ document.addEventListener("click", event => {
   if (link) write("zero-portfolio-language", link.dataset.lang);
 });
 
-// Videos and images: no right-click "Save as".
-document.addEventListener("contextmenu", event => {
-  if (event.target instanceof Element && event.target.closest("video, .pf-media img, .pf-gallery img")) event.preventDefault();
-});
+// Works: no right-click "Save as", no dragging images out, and no shortcuts for saving the page, viewing its source
+// or opening the inspector (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, and Cmd+Option+I/J/C, Cmd+Option+U, Cmd+S on a Mac).
+// This only slows down copying: the files a browser shows can never be fully hidden.
+const isWork = target => target instanceof Element && target.closest("img, video, picture, .pf-media, .pf-gallery, .pf-viewer");
+document.addEventListener("contextmenu", event => { if (isWork(event.target)) event.preventDefault(); });
+document.addEventListener("dragstart", event => { if (isWork(event.target)) event.preventDefault(); });
+document.addEventListener("keydown", event => {
+  // event.code, not event.key: on a Mac, Option changes the typed letter.
+  const letter = event.code.startsWith("Key") ? event.code.slice(3) : "";
+  const inspector = ((event.ctrlKey && event.shiftKey) || (event.metaKey && event.altKey)) && ["I", "J", "C"].includes(letter);
+  const saveOrSource = (event.ctrlKey || event.metaKey) && ["S", "U"].includes(letter);
+  if (event.key === "F12" || inspector || saveOrSource) event.preventDefault();
+}, true);
 
 // Loading screen, home page only (same as the JORDY ZERO store): full on the first visit, short on later visits,
 // not again while browsing the same visit. ?intro replays the full version, ?intro=short the later-visit version.

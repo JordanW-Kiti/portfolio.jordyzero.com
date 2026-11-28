@@ -163,6 +163,16 @@
   background: var(--surface);
 }
 
+/* Works: no dragging an image out of the page, no selecting it, no "Save image" on a long press (iPhone). */
+main img,
+main video,
+.pf-viewer img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 .pf-video {
   position: relative;
   overflow: hidden;
