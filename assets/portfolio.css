@@ -631,3 +631,10 @@ figure {
   color: var(--muted);
   font: 12px/1.4 "Courier New", monospace;
 }
+
+/* Card title (h2 under the page h1), same look as before. */
+.pf-card-title {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}

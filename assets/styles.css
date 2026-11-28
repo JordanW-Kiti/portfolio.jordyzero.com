@@ -2527,3 +2527,10 @@ html:not([lang="en"]) .desc-en {
     font-size: 14px;
   }
 }
+
+/* Product name when it is an h2 (category pages): same look as the h3 of the home page. */
+.product-meta .product-name {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
